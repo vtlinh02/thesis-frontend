@@ -1,6 +1,6 @@
 "use client";
 
-import ProductPage from "@/components/ProductPage";
+import { ProductPage } from "@src/components";
 import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
 

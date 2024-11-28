@@ -1,9 +1,11 @@
-import Feed from "@/components/Feed";
+import Feed from "../components/Feed";
 
 const Home = () => {
   return (
     <section>
-      <h1>Align's Products</h1>
+      <div>
+        <h1>Align's Products</h1>
+      </div>
       <p>Below is a list of Align's products</p>
       <Feed />
     </section>
