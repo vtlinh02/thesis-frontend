@@ -5,12 +5,14 @@ import { thumbnailShoe1 } from "../../public/assets/images";
 
 const ProductItem = ({ product }) => {
   return (
-    <div className="flex flex-col items-start justify-center">
+    <div className="py-4 flex flex-col items-center justify-center">
       <Link href={`/product/${product.id}`}>
-        <h2 className="text-2xl font-palanquin text-coral-red">
+        <div className="text-2xl font-palanquin text-coral-red">
           {product.name}
-        </h2>
-        <Image src={thumbnailShoe1} alt="shoe" className="object-contain" />
+        </div>
+        <span className="flex justify-center items-center">
+          <Image src={thumbnailShoe1} alt="shoe" className="object-contain" />
+        </span>
       </Link>
       <div className="text-xl font-montserrat">
         <span className=" text-slate-gray">Total remaining:</span>

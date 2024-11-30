@@ -7,7 +7,7 @@ const ListProductItems = ({ products }) => {
   return (
     <ul className="flex justify-evenly">
       {products.map((product) => (
-        <li className="w-1/3 border-black border-2">
+        <li key={product.id} className="w-1/3 border-black border-2">
           <ProductItem key={product.id} product={product} />
         </li>
       ))}
@@ -29,6 +29,13 @@ const Feed = () => {
     };
     getProducts();
   }, []);
+
+  // const response = await fetch("http://localhost:8000/product/listProducts/1", {
+  //   cache: "no-store",
+  // });
+
+  // const allProductsRaw = await response.json();
+  // const allProducts = allProductsRaw.data;
 
   return (
     <section>

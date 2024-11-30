@@ -1,12 +1,15 @@
 import Link from "next/link";
 import Image from "next/image";
-import { lighthouse } from "@public/assets/images";
+import { lighthouse, shoppingCart } from "@public/assets/images";
 
 const Nav = () => {
   return (
-    <nav>
-      <Link href="/" className="flex justify-between  font-palanquin font-bold">
-        <div className="flex-col">
+    <nav className="flex justify-between">
+      <div>
+        <Link
+          href="/"
+          className=" flex flex-col justify-between font-palanquin font-bold"
+        >
           <div>Home page</div>
 
           <Image
@@ -14,10 +17,22 @@ const Nav = () => {
             alt="This is the light house"
             width={100}
             height={300}
+            className="object-contain"
           />
-        </div>
-        <div>Your cart</div>
-      </Link>
+        </Link>
+      </div>
+      <div>
+        <Link href="/cart">
+          <span>Your cart</span>
+          <Image
+            src={shoppingCart}
+            alt="This is the shopping cart"
+            width={50}
+            height={50}
+            className="object-contain"
+          />
+        </Link>
+      </div>
     </nav>
   );
 };
