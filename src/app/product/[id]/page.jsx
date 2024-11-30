@@ -48,9 +48,9 @@ const Product = () => {
   };
 
   return (
-    <div>
+    <section>
       <ProductPage product={product} handleButtonClick={handleBuyClick} />
-    </div>
+    </section>
   );
 };
 

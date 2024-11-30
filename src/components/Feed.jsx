@@ -5,11 +5,13 @@ import ProductItem from "./ProductItem";
 
 const ListProductItems = ({ products }) => {
   return (
-    <div>
+    <ul className="flex justify-evenly">
       {products.map((product) => (
-        <ProductItem key={product.id} product={product} />
+        <li className="w-1/3 border-black border-2">
+          <ProductItem key={product.id} product={product} />
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };
 
@@ -23,8 +25,6 @@ const Feed = () => {
       );
       const result = await response.json();
 
-      console.log(result.data[0]);
-
       setAllProducts(result.data);
     };
     getProducts();
@@ -32,7 +32,16 @@ const Feed = () => {
 
   return (
     <section>
-      <div>
+      <div className="flex flex-col justify-center items-center">
+        <h1 className="text-4xl font-bold font-palanquin text-coral-red">
+          {" "}
+          Align's Products
+        </h1>
+        <p className="pt-4 text-xl font-montserrat text-slate-gray">
+          Below is a list of Align's products
+        </p>
+      </div>
+      <div className="pt-[4rem]">
         <ListProductItems products={allProducts} />
       </div>
     </section>
