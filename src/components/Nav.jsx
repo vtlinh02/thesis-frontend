@@ -22,7 +22,7 @@ const Nav = () => {
         </Link>
       </div>
       <div>
-        <Link href="/cart">
+        <Link href={`/cart`}>
           <span>Your cart</span>
           <Image
             src={shoppingCart}
