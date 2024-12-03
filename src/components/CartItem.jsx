@@ -5,14 +5,33 @@ import Image from "next/image";
 import { thumbnailShoe3 } from "@public/assets/images";
 import { increaseImg, decreaseImg } from "@public/assets/images";
 
-const CartItem = ({ cart, setCarts }) => {
+const CartItem = ({ cart, setCarts, balance, setBalance }) => {
+  const userId = 1;
   const [quantity, setQuantity] = useState(1);
-
-  console.log(cart.id);
 
   const product = cart.product;
 
-  const handleBuyClick = async () => {};
+  const handleBuyClick = async () => {
+    const buyResponse = await fetch("http://localhost:8000/order/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        customerId: userId,
+        productId: product.id,
+        quantity: quantity,
+      }),
+    });
+
+    if (buyResponse.ok) {
+      const newBalance = balance - product.price * quantity;
+      setBalance(newBalance);
+      await handleDeleteClick();
+    } else {
+      alert("Failed to buy this product");
+    }
+  };
 
   const handleDeleteClick = async () => {
     const deleteResponse = await fetch(
@@ -58,7 +77,7 @@ const CartItem = ({ cart, setCarts }) => {
           <Image
             src={decreaseImg}
             alt="Decrease icon"
-            className="w-[15%] aspect-[1/1] object-contain"
+            className="w-[15%] aspect-[1/1] object-contain hover:cursor-pointer"
             onClick={() => setQuantity(quantity - 1)}
           />
           <span className="w-1/3 text-center text-2xl font-palanquin font-bold">
@@ -67,7 +86,7 @@ const CartItem = ({ cart, setCarts }) => {
           <Image
             src={increaseImg}
             alt="Increase icon"
-            className="w-[15%] aspect-[1/1] object-contain"
+            className="w-[15%] aspect-[1/1] object-contain hover:cursor-pointer"
             onClick={() => setQuantity(quantity + 1)}
           />
         </div>
