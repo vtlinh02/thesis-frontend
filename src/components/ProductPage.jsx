@@ -2,7 +2,25 @@ import Image from "next/image";
 import { shoe4 } from "@public/assets/images";
 import { Button } from "@src/components";
 
-const ProductPage = ({ product, handleButtonClick }) => {
+const ProductPage = async ({ product }) => {
+  const customerId = 1;
+  const isCartExistedResponse = await fetch(
+    "http://localhost:8000/cart/check-cart-exist",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        customerId,
+        productId: product.id,
+      }),
+    }
+  );
+
+  const isCartExistedResult = await isCartExistedResponse.json();
+  const isCartExisted = isCartExistedResult.data;
+
   return (
     <section className="pt-[2rem]">
       <div className="flex flex-col items-center">
@@ -21,7 +39,11 @@ const ProductPage = ({ product, handleButtonClick }) => {
         <p className="pt-2 pb-4 font-montserrat text-slate-gray">
           {product.description}
         </p>
-        <Button content="Buy" handleOnclick={handleButtonClick} />
+        {isCartExisted ? (
+          <Button content="Cart alreadt existed" />
+        ) : (
+          <Button content="Add to cart" />
+        )}
       </div>
       {/* <div>for further features, like comments, ...</div> */}
     </section>

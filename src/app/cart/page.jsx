@@ -23,7 +23,7 @@ const Cart = async () => {
       </div>
       <ul className="flex flex-col gap-2 pt-[3rem]">
         {carts.map((cart) => (
-          <li key={cart.id} className="flex justify-center">
+          <li key={cart.id} className="flex justify-centerx">
             <CartItem cart={cart} />
           </li>
         ))}

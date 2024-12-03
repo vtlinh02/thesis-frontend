@@ -1,50 +1,27 @@
-"use client";
-
 import { ProductPage } from "@src/components";
-import { useParams } from "next/navigation";
-import { useState, useEffect } from "react";
 
-const Product = () => {
+const Product = async ({ params }) => {
   const customerId = 1;
-  const params = useParams();
+
   const { id: productId } = params;
 
-  const [product, setProduct] = useState({});
-
-  useEffect(() => {
-    const getProduct = async () => {
-      const response = await fetch(
-        `http://localhost:8000/product/${productId}`
-      );
-      const result = await response.json();
-
-      setProduct(result.data);
-    };
-    getProduct();
-  }, []);
+  const productResponse = await fetch(
+    `http://localhost:8000/product/${productId}`
+  );
+  const productResult = await productResponse.json();
+  const product = productResult.data;
 
   const handleBuyClick = async () => {
-    const response = await fetch("http://localhost:8000/order/create", {
+    await fetch("http://localhost:8000/cart", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         customerId,
-        productId: product.id,
+        productId: productId,
       }),
     });
-
-    const result = await response.json();
-
-    if (result.message == "Success") {
-      setProduct((prevProduct) => ({
-        ...prevProduct,
-        totalRemaining: prevProduct.totalRemaining - 1,
-      }));
-    } else {
-      alert("Fail");
-    }
   };
 
   return (
