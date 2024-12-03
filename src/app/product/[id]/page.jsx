@@ -1,32 +1,30 @@
-import { ProductPage } from "@src/components";
+"use client";
 
-const Product = async ({ params }) => {
+import { ProductPage } from "@src/components";
+import { useState, useEffect } from "react";
+
+const Product = ({ params }) => {
   const customerId = 1;
 
   const { id: productId } = params;
 
-  const productResponse = await fetch(
-    `http://localhost:8000/product/${productId}`
-  );
-  const productResult = await productResponse.json();
-  const product = productResult.data;
+  const [product, setProduct] = useState({});
 
-  const handleBuyClick = async () => {
-    await fetch("http://localhost:8000/cart", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        customerId,
-        productId: productId,
-      }),
-    });
-  };
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const productResponse = await fetch(
+        `http://localhost:8000/product/${productId}`
+      );
+      const productResult = await productResponse.json();
+      setProduct(productResult.data);
+    };
+
+    fetchProduct();
+  }, []);
 
   return (
     <section>
-      <ProductPage product={product} handleButtonClick={handleBuyClick} />
+      <ProductPage product={product} />
     </section>
   );
 };

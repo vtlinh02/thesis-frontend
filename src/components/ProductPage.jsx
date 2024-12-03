@@ -1,12 +1,40 @@
+"use client";
+
 import Image from "next/image";
 import { shoe4 } from "@public/assets/images";
 import { Button } from "@src/components";
+import { useState, useEffect } from "react";
 
-const ProductPage = async ({ product }) => {
+const ProductPage = ({ product }) => {
   const customerId = 1;
-  const isCartExistedResponse = await fetch(
-    "http://localhost:8000/cart/check-cart-exist",
-    {
+
+  const [isCartExisted, setIsCartExisted] = useState(false);
+  useEffect(() => {
+    const fetchIsCartExisted = async () => {
+      const isCartExistedResponse = await fetch(
+        "http://localhost:8000/cart/check-cart-exist",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            customerId,
+            productId: product.id,
+          }),
+        }
+      );
+
+      const isCartExistedResult = await isCartExistedResponse.json();
+      const isCartExisted = isCartExistedResult.data;
+
+      setIsCartExisted(isCartExisted);
+    };
+    fetchIsCartExisted();
+  }, []);
+
+  const handleOnClick = async () => {
+    await fetch("http://localhost:8000/cart", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -15,11 +43,10 @@ const ProductPage = async ({ product }) => {
         customerId,
         productId: product.id,
       }),
-    }
-  );
+    });
 
-  const isCartExistedResult = await isCartExistedResponse.json();
-  const isCartExisted = isCartExistedResult.data;
+    setIsCartExisted(true);
+  };
 
   return (
     <section className="pt-[2rem]">
@@ -40,9 +67,13 @@ const ProductPage = async ({ product }) => {
           {product.description}
         </p>
         {isCartExisted ? (
-          <Button content="Cart alreadt existed" />
+          <Button content="Cart already existed" />
         ) : (
-          <Button content="Add to cart" />
+          <Button
+            content="Add to cart"
+            handleOnClick={handleOnClick}
+            contentAfterClick="Cart already existed"
+          />
         )}
       </div>
       {/* <div>for further features, like comments, ...</div> */}
