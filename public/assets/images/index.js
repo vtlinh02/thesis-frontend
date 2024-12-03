@@ -22,6 +22,8 @@ import thumbnailShoe2 from "./thumbnail-shoe2.svg";
 import thumbnailShoe3 from "./thumbnail-shoe3.svg";
 import lighthouse from "./lighthouse.jpg";
 import shoppingCart from "./cart.jpg";
+import increaseImg from "./increase.png";
+import decreaseImg from "./decrease.png";
 
 export {
   bigShoe1,
@@ -43,4 +45,6 @@ export {
   thumbnailShoe3,
   lighthouse,
   shoppingCart,
+  increaseImg,
+  decreaseImg,
 };
