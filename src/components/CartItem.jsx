@@ -24,11 +24,13 @@ const CartItem = ({ cart, setCarts, balance, setBalance }) => {
       }),
     });
 
-    if (buyResponse.ok) {
+    const buyResult = await buyResponse.json();
+
+    if (buyResult.message == "Success") {
       const newBalance = balance - product.price * quantity;
       setBalance(newBalance);
       await handleDeleteClick();
-    } else {
+    } else if (buyResult.message == "Fail") {
       alert("Failed to buy this product");
     }
   };
