@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useState } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const Login: React.FC = () => {
   const [formData, setFormData] = useState({ username: "", password: "" });
@@ -25,18 +25,18 @@ const Login: React.FC = () => {
     });
 
     if (response.ok) {
-      const result = await response.json();
+      const result: any = await response.json();
       const token = result.data.token;
       localStorage.setItem("token", token);
 
-      router.push("/");
+      router.push("/home");
     } else {
       setError("Wrong username or password");
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="flex flex-col">
       <input
         type="text"
         value={formData.username}
@@ -44,6 +44,7 @@ const Login: React.FC = () => {
         onChange={(e) => {
           setFormData({ ...formData, username: e.target.value });
         }}
+        className="text-3xl font-palanquin text-center border-b-2 border-black py-4"
         required
       />
       <input
@@ -54,9 +55,12 @@ const Login: React.FC = () => {
           setFormData({ ...formData, password: e.target.value });
         }}
         required
+        className="text-3xl font-palanquin text-center border-b-2 border-black py-4"
       />
       {error != "" ? <p>{error}</p> : undefined}
-      <button type="submit">Submit</button>
+      <button type="submit" className="text-3xl font-bold font-palanquin py-4">
+        Login
+      </button>
     </form>
   );
 };

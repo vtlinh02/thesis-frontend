@@ -7,7 +7,7 @@ const Nav = () => {
     <nav className="flex justify-between">
       <div>
         <Link
-          href="/"
+          href="/home"
           className=" flex flex-col justify-between font-palanquin font-bold"
         >
           <div>Home page</div>
@@ -21,8 +21,8 @@ const Nav = () => {
           />
         </Link>
       </div>
-      <div>
-        <Link href={`/cart`}>
+      <div className="flex flex-row-reverse w-1/3 gap-4 font-bold">
+        <Link href={`/home/cart`}>
           <span>Your cart</span>
           <Image
             src={shoppingCart}
@@ -32,6 +32,7 @@ const Nav = () => {
             className="object-contain"
           />
         </Link>
+        <Link href={"/register"}>Login</Link>
       </div>
     </nav>
   );

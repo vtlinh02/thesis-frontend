@@ -1,4 +1,4 @@
-import "./globals.css";
+import "../globals.css";
 import { Nav } from "@components";
 import { ReactNode } from "react";
 
