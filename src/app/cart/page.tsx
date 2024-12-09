@@ -49,7 +49,7 @@ const Cart = () => {
         <span className="text-coral-red font-bold px-2">{balance}</span>
       </div>
       <ul className="flex flex-col gap-2 pt-[3rem]">
-        {carts.map((cart) => (
+        {carts.map((cart: any) => (
           <li key={cart.id} className="flex justify-center">
             <CartItem
               cart={cart}

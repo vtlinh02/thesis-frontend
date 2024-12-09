@@ -3,7 +3,7 @@ import Image from "next/image";
 
 import { thumbnailShoe1 } from "../../public/assets/images";
 
-const ProductItem = ({ product }) => {
+const ProductItem = ({ product }: any) => {
   return (
     <div className="py-4 flex flex-col items-center justify-center">
       <Link href={`/product/${product.id}`}>

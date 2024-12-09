@@ -1,6 +1,6 @@
 "use client";
 
-const Button = ({ content, handleOnClick }) => {
+const Button = ({ content, handleOnClick }: any) => {
   return (
     <button
       onClick={handleOnClick}

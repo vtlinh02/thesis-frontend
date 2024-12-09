@@ -5,7 +5,7 @@ import { shoe4 } from "@public/assets/images";
 import { Button } from "@src/components";
 import { useState, useEffect } from "react";
 
-const ProductPage = ({ product }) => {
+const ProductPage = ({ product }: any) => {
   const customerId = 1;
 
   const [isCartExisted, setIsCartExisted] = useState(false);

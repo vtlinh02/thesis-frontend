@@ -5,7 +5,7 @@ import Image from "next/image";
 import { thumbnailShoe3 } from "@public/assets/images";
 import { increaseImg, decreaseImg } from "@public/assets/images";
 
-const CartItem = ({ cart, setCarts, balance, setBalance }) => {
+const CartItem = ({ cart, setCarts, balance, setBalance }: any) => {
   const userId = 1;
   const [quantity, setQuantity] = useState(1);
 
@@ -48,7 +48,9 @@ const CartItem = ({ cart, setCarts, balance, setBalance }) => {
     );
 
     if (deleteResponse.ok) {
-      setCarts((prevCarts) => prevCarts.filter((c) => c.id !== cart.id));
+      setCarts((prevCarts: any) =>
+        prevCarts.filter((c: any) => c.id !== cart.id)
+      );
     }
   };
 

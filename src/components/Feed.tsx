@@ -3,10 +3,10 @@
 // import { useState, useEffect } from "react";
 import ProductItem from "./ProductItem";
 
-const ListProductItems = ({ products }) => {
+const ListProductItems = ({ products }: any) => {
   return (
     <ul className="flex justify-evenly">
-      {products.map((product) => (
+      {products.map((product: any) => (
         <li key={product.id} className="w-1/3 border-black border-2">
           <ProductItem key={product.id} product={product} />
         </li>

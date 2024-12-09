@@ -2,8 +2,9 @@
 
 import { ProductPage } from "@src/components";
 import { useState, useEffect } from "react";
+import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 
-const Product = ({ params }) => {
+const Product = ({ params }: { params: Params }) => {
   const customerId = 1;
 
   const { id: productId } = params;
