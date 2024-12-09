@@ -11,7 +11,13 @@ const ProductItem = ({ product }) => {
           {product.name}
         </div>
         <span className="flex justify-center items-center">
-          <Image src={thumbnailShoe1} alt="shoe" className="object-contain" />
+          <Image
+            src={thumbnailShoe1}
+            alt="shoe"
+            className="object-contain"
+            width={100}
+            height={100}
+          />
         </span>
       </Link>
       <div className="text-xl font-montserrat">
