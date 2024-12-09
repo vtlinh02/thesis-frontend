@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { lighthouse, shoppingCart } from "@public/assets/images";
+import { lighthouse, shoppingCart } from "@assets/images";
 
 const Nav = () => {
   return (

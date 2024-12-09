@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { shoe4 } from "@public/assets/images";
-import { Button } from "@src/components";
+import { shoe4 } from "@assets/images";
+import { Button } from "@components";
 import { useState, useEffect } from "react";
 
 const ProductPage = ({ product }: any) => {

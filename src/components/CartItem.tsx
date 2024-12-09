@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { thumbnailShoe3 } from "@public/assets/images";
-import { increaseImg, decreaseImg } from "@public/assets/images";
+import { thumbnailShoe3 } from "@assets/images";
+import { increaseImg, decreaseImg } from "@assets/images";
 
 const CartItem = ({ cart, setCarts, balance, setBalance }: any) => {
   const userId = 1;

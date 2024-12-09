@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { CartItem } from "@src/components";
+import { CartItem } from "@components";
 
 const Cart = () => {
   const [carts, setCarts] = useState([]);
