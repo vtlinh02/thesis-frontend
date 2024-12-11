@@ -19,13 +19,17 @@ const page = () => {
       <section className="flex flex-col w-1/2">
         <div className="flex border-2 border-black">
           <button
-            className="w-1/2 text-4xl font-palanquin text-center border-r-2 border-black py-2"
+            className={`w-1/2 text-4xl font-palanquin text-center border-r-2 border-black py-2 ${
+              isLoginSellected ? "bg-green-500" : null
+            }`}
             onClick={handleLoginSelected}
           >
             Login
           </button>
           <button
-            className="w-1/2 text-4xl font-palanquin text-center py-2"
+            className={`w-1/2 text-4xl font-palanquin text-center py-2 ${
+              isLoginSellected ? null : "bg-green-500"
+            }`}
             onClick={handleSignUpSelected}
           >
             Sign up

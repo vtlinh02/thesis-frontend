@@ -1,6 +1,6 @@
-// "use client";
+"use client";
 
-// import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import ProductItem from "./ProductItem";
 
 const ListProductItems = ({ products }: any) => {
@@ -15,27 +15,27 @@ const ListProductItems = ({ products }: any) => {
   );
 };
 
-const Feed = async () => {
-  // const [allProducts, setAllProducts] = useState([]);
+const Feed = () => {
+  const [allProducts, setAllProducts] = useState([]);
 
-  // useEffect(() => {
-  //   const getProducts = async () => {
-  //     const response = await fetch(
-  //       "http://localhost:8000/product/listProducts/1"
-  //     );
-  //     const result = await response.json();
+  useEffect(() => {
+    const getProducts = async () => {
+      const response = await fetch(
+        "http://localhost:8000/product/listProducts/1"
+      );
+      const result = await response.json();
 
-  //     setAllProducts(result.data);
-  //   };
-  //   getProducts();
-  // }, []);
+      setAllProducts(result.data);
+    };
+    getProducts();
+  }, []);
 
-  const response = await fetch("http://localhost:8000/product/listProducts/1", {
-    cache: "no-store",
-  });
+  // const response = await fetch("http://localhost:8000/product/listProducts/1", {
+  //   cache: "no-store",
+  // });
 
-  const allProductsRaw = await response.json();
-  const allProducts = allProductsRaw.data;
+  // const allProductsRaw = await response.json();
+  // const allProducts = allProductsRaw.data;
 
   return (
     <section>
