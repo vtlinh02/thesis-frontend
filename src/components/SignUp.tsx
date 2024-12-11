@@ -24,13 +24,17 @@ const SignUp: React.FC = () => {
       }),
     });
 
+    console.log(response.status + "server");
+
     if (response.ok) {
+      console.log("response ok ????");
       const result: any = await response.json();
       const token = result.data.token;
       localStorage.setItem("token", token);
 
       router.push("/");
     } else {
+      console.log("login fail");
       setError("Wrong username or password");
     }
   };
@@ -44,7 +48,7 @@ const SignUp: React.FC = () => {
         onChange={(e) => {
           setFormData({ ...formData, username: e.target.value });
         }}
-        className="text-3xl font-palanquin text-center border-b-2 border-black py-4"
+        className="text-3xl font-palanquin text-center border-x-2 border-b-2 border-black py-4"
         required
       />
       <input
@@ -55,12 +59,17 @@ const SignUp: React.FC = () => {
           setFormData({ ...formData, password: e.target.value });
         }}
         required
-        className="text-3xl font-palanquin text-center border-b-2 border-black py-4"
+        className="text-3xl font-palanquin text-center border-x-2 border-black py-4"
       />
-      {error != "" ? <p>{error}</p> : undefined}
-      <button type="submit" className="text-3xl font-bold font-palanquin py-4">
-        Sign Up
+      <button
+        type="submit"
+        className="text-3xl font-bold font-palanquin py-4 border-2 border-black hover:bg-green-500"
+      >
+        Login
       </button>
+      <p className="text-2xl font-montserrat text-red-600 text-center">
+        {error !== "" ? error : undefined}
+      </p>
     </form>
   );
 };

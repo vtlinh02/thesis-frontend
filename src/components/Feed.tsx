@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import ProductItem from "./ProductItem";
+import { useUser } from "@context/UserContext";
 
 const ListProductItems = ({ products }: any) => {
   return (
@@ -17,6 +18,7 @@ const ListProductItems = ({ products }: any) => {
 
 const Feed = () => {
   const [allProducts, setAllProducts] = useState([]);
+  const { user } = useUser();
 
   useEffect(() => {
     const getProducts = async () => {
@@ -44,6 +46,9 @@ const Feed = () => {
           {" "}
           Align's Products
         </h1>
+        <p className="font-palanquin text-3xl py-4 font-bold text-slate-gray">
+          Welcome <span>{user?.username}</span>
+        </p>
         <p className="pt-4 text-xl font-montserrat text-slate-gray">
           Below is a list of Align's products
         </p>

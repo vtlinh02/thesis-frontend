@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { lighthouse, shoppingCart } from "@assets/images";
+import { lighthouse, shoppingCart, logout } from "@assets/images";
 
 const Nav = () => {
   return (
@@ -22,6 +22,16 @@ const Nav = () => {
         </Link>
       </div>
       <div className="flex flex-row-reverse w-1/3 gap-4 font-bold">
+        <Link href={"/register"}>
+          <span>Logout</span>
+          <Image
+            src={logout}
+            alt="This is a logout image"
+            className="object-contain"
+            width={50}
+            height={50}
+          />
+        </Link>
         <Link href={`/cart`}>
           <span>Your cart</span>
           <Image
@@ -32,7 +42,6 @@ const Nav = () => {
             className="object-contain"
           />
         </Link>
-        <Link href={"/register"}>Login</Link>
       </div>
     </nav>
   );

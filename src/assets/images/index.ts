@@ -24,6 +24,8 @@ import lighthouse from "./lighthouse.jpg";
 import shoppingCart from "./cart.jpg";
 import increaseImg from "./increase.png";
 import decreaseImg from "./decrease.png";
+import logout from "./logout.png";
+import horse from "./horse.jpg";
 
 export {
   bigShoe1,
@@ -47,4 +49,6 @@ export {
   shoppingCart,
   increaseImg,
   decreaseImg,
+  logout,
+  horse,
 };
