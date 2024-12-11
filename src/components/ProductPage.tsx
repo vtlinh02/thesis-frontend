@@ -4,9 +4,10 @@ import Image from "next/image";
 import { shoe4 } from "@assets/images";
 import { Button } from "@components";
 import { useState, useEffect } from "react";
+import { useUser } from "@context/UserContext";
 
 const ProductPage = ({ product }: any) => {
-  const customerId = 1;
+  const { user: customer } = useUser();
 
   const [isCartExisted, setIsCartExisted] = useState(false);
   useEffect(() => {
@@ -19,7 +20,7 @@ const ProductPage = ({ product }: any) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            customerId,
+            customerId: customer?.id,
             productId: product.id,
           }),
         }
@@ -40,7 +41,7 @@ const ProductPage = ({ product }: any) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        customerId,
+        customerId: customer?.id,
         productId: product.id,
       }),
     });
