@@ -29,7 +29,7 @@ const Login: React.FC = () => {
       const token = result.data.token;
       localStorage.setItem("token", token);
 
-      router.push("/home");
+      router.push("/");
     } else {
       setError("Wrong username or password");
     }
