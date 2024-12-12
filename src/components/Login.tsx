@@ -24,17 +24,13 @@ const Login: React.FC = () => {
       }),
     });
 
-    console.log(response.status + "server");
-
     if (response.ok) {
-      console.log("response ok ????");
       const result: any = await response.json();
       const token = result.data.token;
       localStorage.setItem("token", token);
 
       router.push("/");
     } else {
-      console.log("login fail");
       setError("Wrong username or password");
     }
   };

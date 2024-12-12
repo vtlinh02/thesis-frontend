@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import { CartItem } from "@components";
 import { useUser } from "@context/UserContext";
 
@@ -14,14 +14,16 @@ const Cart = () => {
   useEffect(() => {
     const fetchCartsData = async () => {
       const cartsResponse = await fetch(
-        `http://localhost:8000/cart/list-carts/${user?.id}`
+        `http://localhost:8000/cart/list-carts/${user?.id}`,
+        {
+          method: "GET",
+        }
       );
 
       const cartsResult = await cartsResponse.json();
 
       setCarts(cartsResult.data);
     };
-    fetchCartsData();
 
     const fetchBalance = async () => {
       const balanceResponse = await fetch(
@@ -34,8 +36,11 @@ const Cart = () => {
       const balanceResult = await balanceResponse.json();
       setBalance(balanceResult.data);
     };
-    fetchBalance();
-  }, []);
+    if (user) {
+      fetchCartsData();
+      fetchBalance();
+    }
+  }, [user]);
 
   return (
     <section className="flex flex-col justify-center items-center">
@@ -49,16 +54,18 @@ const Cart = () => {
         <span className="text-coral-red font-bold px-2">{balance}</span>
       </div>
       <ul className="flex flex-col gap-2 pt-[3rem]">
-        {carts.map((cart: any) => (
-          <li key={cart.id} className="flex justify-center">
-            <CartItem
-              cart={cart}
-              setCarts={setCarts}
-              balance={balance}
-              setBalance={setBalance}
-            />
-          </li>
-        ))}
+        {carts.length != 0
+          ? carts.map((cart: any) => (
+              <li key={cart.id} className="flex justify-center">
+                <CartItem
+                  cart={cart}
+                  setCarts={setCarts}
+                  balance={balance}
+                  setBalance={setBalance}
+                />
+              </li>
+            ))
+          : undefined}
       </ul>
     </section>
   );

@@ -3,9 +3,11 @@
 import { ProductPage } from "@components";
 import { useState, useEffect } from "react";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
+import { useUser } from "@context/UserContext";
 
 const Product = ({ params }: { params: Params }) => {
   const { id: productId } = params;
+  const { user } = useUser();
 
   const [product, setProduct] = useState({});
 
@@ -23,6 +25,7 @@ const Product = ({ params }: { params: Params }) => {
 
   return (
     <section>
+      <h1>{user?.id}</h1>
       <ProductPage product={product} />
     </section>
   );

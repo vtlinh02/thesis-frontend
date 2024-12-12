@@ -1,6 +1,12 @@
 "use client";
 
-import { useContext, createContext, ReactNode, useState } from "react";
+import {
+  useContext,
+  createContext,
+  ReactNode,
+  useState,
+  useEffect,
+} from "react";
 
 interface User {
   id: number;
@@ -15,7 +21,25 @@ interface userContextProps {
 const UserContext = createContext<userContextProps | undefined>(undefined);
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUserState] = useState<User | null>(null);
+
+  const setUser = (user: User | null) => {
+    setUserState(user);
+    if (user) {
+      localStorage.setItem("user", JSON.stringify(user));
+    } else {
+      localStorage.removeItem("user");
+    }
+  };
+
+  useEffect(() => {
+    if (!user) {
+      const user = localStorage.getItem("user");
+      if (user) {
+        setUserState(JSON.parse(user));
+      }
+    }
+  }, []);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
