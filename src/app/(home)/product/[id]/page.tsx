@@ -20,8 +20,8 @@ const Product = ({ params }: { params: Params }) => {
       setProduct(productResult.data);
     };
 
-    fetchProduct();
-  }, []);
+    if (user) fetchProduct();
+  }, [user]);
 
   return (
     <section>

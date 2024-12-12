@@ -30,7 +30,7 @@ const Feed = () => {
       setAllProducts(result.data);
     };
     getProducts();
-  }, []);
+  }, [allProducts]);
 
   // const response = await fetch("http://localhost:8000/product/listProducts/1", {
   //   cache: "no-store",
