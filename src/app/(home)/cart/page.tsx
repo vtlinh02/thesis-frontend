@@ -3,6 +3,7 @@
 import { useState, useEffect, use } from "react";
 import { CartItem } from "@components";
 import { useUser } from "@context/UserContext";
+import { withAuth } from "@utils/withAuth";
 
 const Cart = () => {
   const [carts, setCarts] = useState([]);
@@ -78,4 +79,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default withAuth(Cart);

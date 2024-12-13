@@ -17,13 +17,12 @@ const ListProductItems = ({ products }: any) => {
 };
 
 const Feed = () => {
-  const [allProducts, setAllProducts] = useState([]);
+  const [allProducts, setAllProducts] = useState<Array<any>>([]);
   const { user } = useUser();
 
   useEffect(() => {
     const getProducts = async () => {
       const token = localStorage.getItem("token");
-
       const response = await fetch(
         "http://localhost:8000/product/listProducts/1",
         {
@@ -33,7 +32,6 @@ const Feed = () => {
         }
       );
       const result = await response.json();
-
       setAllProducts(result.data);
     };
     getProducts();
@@ -54,7 +52,9 @@ const Feed = () => {
         </p>
       </div>
       <div className="pt-[4rem]">
-        <ListProductItems products={allProducts} />
+        {allProducts.length !== 0 ? (
+          <ListProductItems products={allProducts} />
+        ) : undefined}
       </div>
     </section>
   );
