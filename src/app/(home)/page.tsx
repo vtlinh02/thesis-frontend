@@ -18,11 +18,9 @@ const Home = () => {
         const response = await fetch(
           "http://localhost:8000/auth/validate-token",
           {
-            method: "POST",
             headers: {
-              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
             },
-            body: JSON.stringify({ token }),
           }
         );
         if (!response.ok) {

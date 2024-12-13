@@ -12,9 +12,15 @@ const Product = ({ params }: { params: Params }) => {
   const [product, setProduct] = useState({});
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
     const fetchProduct = async () => {
       const productResponse = await fetch(
-        `http://localhost:8000/product/${productId}`
+        `http://localhost:8000/product/${productId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       const productResult = await productResponse.json();
       setProduct(productResult.data);
@@ -25,7 +31,6 @@ const Product = ({ params }: { params: Params }) => {
 
   return (
     <section>
-      <h1>{user?.id}</h1>
       <ProductPage product={product} />
     </section>
   );

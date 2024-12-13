@@ -19,25 +19,28 @@ const ListProductItems = ({ products }: any) => {
 const Feed = () => {
   const [allProducts, setAllProducts] = useState([]);
   const { user } = useUser();
+  let token = null;
+
+  if (typeof window !== "undefined") {
+    token = localStorage.getItem("token");
+  }
 
   useEffect(() => {
     const getProducts = async () => {
       const response = await fetch(
-        "http://localhost:8000/product/listProducts/1"
+        "http://localhost:8000/product/listProducts/1",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       const result = await response.json();
 
       setAllProducts(result.data);
     };
     getProducts();
-  }, [allProducts]);
-
-  // const response = await fetch("http://localhost:8000/product/listProducts/1", {
-  //   cache: "no-store",
-  // });
-
-  // const allProductsRaw = await response.json();
-  // const allProducts = allProductsRaw.data;
+  }, []);
 
   return (
     <section>

@@ -14,9 +14,9 @@ const ProductItem = ({ product }: any) => {
           <Image
             src={thumbnailShoe1}
             alt="shoe"
-            className="object-contain"
+            className="object-contain h-auto"
             width={100}
-            height={100}
+            height={0}
           />
         </span>
       </Link>

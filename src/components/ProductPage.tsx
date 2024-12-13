@@ -9,6 +9,9 @@ import { useUser } from "@context/UserContext";
 const ProductPage = ({ product }: any) => {
   const { user: customer } = useUser();
 
+  let token = null;
+  if (typeof window !== "undefined") token = localStorage.getItem("token");
+
   const [isCartExisted, setIsCartExisted] = useState(false);
   useEffect(() => {
     const fetchIsCartExisted = async () => {
@@ -18,6 +21,7 @@ const ProductPage = ({ product }: any) => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({
             customerId: customer?.id,
@@ -39,6 +43,7 @@ const ProductPage = ({ product }: any) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         customerId: customer?.id,
@@ -57,7 +62,7 @@ const ProductPage = ({ product }: any) => {
         </h1>
         <Image
           src={shoe4}
-          alt={product.name}
+          alt={"This is a shoe thumbnail"}
           className="w-1/3 h-1/3 object-contain"
         />
         <h3 className="pt-4 text-xl font-montserrat">

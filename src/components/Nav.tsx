@@ -16,8 +16,8 @@ const Nav = () => {
             src={lighthouse}
             alt="This is the light house"
             width={100}
-            height={300}
-            className="object-contain"
+            height={0}
+            className="object-contain h-auto"
           />
         </Link>
       </div>

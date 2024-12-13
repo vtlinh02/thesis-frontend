@@ -8,6 +8,9 @@ const Cart = () => {
   const [carts, setCarts] = useState([]);
   const [balance, setBalance] = useState(null);
 
+  let token = null;
+  if (typeof window !== "undefined") token = localStorage.getItem("token");
+
   // further more, these variable will be replaced by session's data => 11/12/2024: this is that moment!
   const { user } = useUser();
 
@@ -16,7 +19,9 @@ const Cart = () => {
       const cartsResponse = await fetch(
         `http://localhost:8000/cart/list-carts/${user?.id}`,
         {
-          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
 
@@ -29,7 +34,9 @@ const Cart = () => {
       const balanceResponse = await fetch(
         `http://localhost:8000/wallet/${user?.id}`,
         {
-          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
 

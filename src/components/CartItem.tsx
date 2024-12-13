@@ -4,10 +4,12 @@ import { useState } from "react";
 import Image from "next/image";
 import { thumbnailShoe3 } from "@assets/images";
 import { increaseImg, decreaseImg } from "@assets/images";
+import { useUser } from "@context/UserContext";
 
 const CartItem = ({ cart, setCarts, balance, setBalance }: any) => {
-  const userId = 1;
   const [quantity, setQuantity] = useState(1);
+  const token = localStorage.getItem("token");
+  const { user } = useUser();
 
   const product = cart.product;
 
@@ -16,9 +18,10 @@ const CartItem = ({ cart, setCarts, balance, setBalance }: any) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        customerId: userId,
+        customerId: user?.id,
         productId: product.id,
         quantity: quantity,
       }),
@@ -42,6 +45,7 @@ const CartItem = ({ cart, setCarts, balance, setBalance }: any) => {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ cartId: cart.id }),
       }
