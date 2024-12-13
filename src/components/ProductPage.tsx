@@ -35,8 +35,11 @@ const ProductPage = ({ product }: any) => {
 
       setIsCartExisted(isCartExisted);
     };
-    fetchIsCartExisted();
-  }, []);
+
+    if (customer && Object.keys(product).length !== 0) {
+      fetchIsCartExisted();
+    }
+  }, [customer, product]);
 
   const handleOnClick = async () => {
     await fetch("http://localhost:8000/cart", {

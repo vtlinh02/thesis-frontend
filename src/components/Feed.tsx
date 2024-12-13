@@ -19,14 +19,11 @@ const ListProductItems = ({ products }: any) => {
 const Feed = () => {
   const [allProducts, setAllProducts] = useState([]);
   const { user } = useUser();
-  let token = null;
-
-  if (typeof window !== "undefined") {
-    token = localStorage.getItem("token");
-  }
 
   useEffect(() => {
     const getProducts = async () => {
+      const token = localStorage.getItem("token");
+
       const response = await fetch(
         "http://localhost:8000/product/listProducts/1",
         {

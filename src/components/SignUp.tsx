@@ -61,7 +61,7 @@ const SignUp: React.FC = () => {
         type="submit"
         className="text-3xl font-bold font-palanquin py-4 border-2 border-black hover:bg-green-500"
       >
-        Login
+        Sign Up
       </button>
       <p className="text-2xl font-montserrat text-red-600 text-center">
         {error !== "" ? error : undefined}
