@@ -4,6 +4,7 @@ import { ProductPage } from "@components";
 import { useState, useEffect } from "react";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import { useUser } from "@context/UserContext";
+import { withAuth } from "@utils/withAuth";
 
 const Product = ({ params }: { params: Params }) => {
   const { id: productId } = params;
@@ -36,4 +37,4 @@ const Product = ({ params }: { params: Params }) => {
   );
 };
 
-export default Product;
+export default withAuth(Product);

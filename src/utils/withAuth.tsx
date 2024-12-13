@@ -5,7 +5,9 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useUser } from "@context/UserContext";
 
-export function withAuth(WrappedComponent: React.ComponentType) {
+export function withAuth<P extends object>(
+  WrappedComponent: React.ComponentType<P>
+) {
   const functionReturn = (props: any) => {
     const [isTokenValid, setIsTokenValid] = useState(false);
     const router = useRouter();
