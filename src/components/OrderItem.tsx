@@ -23,15 +23,15 @@ const OrderItem = ({ order }: { order: Order }) => {
           />
         </div>
         <div className="flex flex-col w-[50%] justify-center">
-          <p className="text-xl font-palanquin">
-            Name: <span>{order.product.name}</span>
+          <p className="text-xl font-palanquin w-[250px]">
+            <span>{order.product.name}</span>
           </p>
           <p className="pt-2 font-montserrat">
             Quantity: <span>{order.quantity}</span>
           </p>
         </div>
       </div>
-      <div className="w-[100px] flex items-center justify-center border-l-2 border-black font-palanquin">
+      <div className="w-[100px] flex items-center justify-center border-l-2 border-black font-palanquin text-xl">
         Value:{" "}
         <span className="font-bold text-coral-red px-2">{order.value}</span>
       </div>
