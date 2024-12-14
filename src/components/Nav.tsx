@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { lighthouse, shoppingCart, logout } from "@assets/images";
+import { order, order1 } from "@assets/icons";
 
 const Nav = () => {
   return (
@@ -30,6 +31,16 @@ const Nav = () => {
             className="object-contain"
             width={50}
             height={50}
+          />
+        </Link>
+        <Link href={"/order"}>
+          <span>Your order</span>
+          <Image
+            src={order}
+            alt="This is the order navigation button"
+            width={50}
+            height={50}
+            className="object-contain"
           />
         </Link>
         <Link href={`/cart`}>
