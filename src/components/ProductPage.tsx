@@ -5,8 +5,9 @@ import { shoe4 } from "@assets/images";
 import { Button } from "@components";
 import { useState, useEffect } from "react";
 import { useUser } from "@context/UserContext";
+import { Product } from "@shared/Product";
 
-const ProductPage = ({ product }: any) => {
+const ProductPage = ({ product }: { product: Product }) => {
   const { user: customer } = useUser();
 
   let token = null;
@@ -66,7 +67,7 @@ const ProductPage = ({ product }: any) => {
         <Image
           src={shoe4}
           alt={"This is a shoe thumbnail"}
-          className="w-1/3 h-1/3 object-contain"
+          className="w-1/4 h-1/4 object-contain"
         />
         <h3 className="pt-4 text-xl font-montserrat">
           Total remaining:{" "}
@@ -74,6 +75,9 @@ const ProductPage = ({ product }: any) => {
         </h3>
         <p className="pt-2 pb-4 font-montserrat text-slate-gray">
           {product.description}
+        </p>
+        <p className="text-2xl py-2 font-palanquin text-slate-gray">
+          Price: <span className="font-bold">{product.price}</span>
         </p>
         {isCartExisted ? (
           <Button content="Cart already existed" />

@@ -2,8 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { thumbnailShoe1 } from "../../public/assets/images";
+import { Product } from "@shared/Product";
 
-const ProductItem = ({ product }: any) => {
+const ProductItem = ({ product }: { product: Product }) => {
   return (
     <div className="py-4 flex flex-col items-center justify-center">
       <Link href={`/product/${product.id}`}>
@@ -24,6 +25,9 @@ const ProductItem = ({ product }: any) => {
         <span className=" text-slate-gray">Total remaining:</span>
         <span className="text-coral-red"> {product.totalRemaining}</span>
       </div>
+      <p className="text-xl font-montserrat text-slate-gray">
+        Price: <span className="font-bold text-coral-red">{product.price}</span>
+      </p>
       <p className="font-montserrat">{product.description}</p>
     </div>
   );
