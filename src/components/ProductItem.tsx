@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import { thumbnailShoe1 } from "../../public/assets/images";
+import { thumbnailShoe1 } from "@assets/images";
 import { Product } from "@shared/Product";
 
 const ProductItem = ({ product }: { product: Product }) => {
