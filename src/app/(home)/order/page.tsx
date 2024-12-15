@@ -4,6 +4,7 @@ import { withAuth } from "@utils/withAuth";
 import { useUser } from "@context/UserContext";
 import { useState, useEffect } from "react";
 import { OrderItem } from "@components";
+// import "dotenv/config";
 
 const Order = () => {
   const { user } = useUser();
@@ -13,7 +14,7 @@ const Order = () => {
     const handle = async () => {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:8000/order/listOrders/${user?.id}`,
+        `http://${process.env.NEXT_PUBLIC_BACKEND_URL}/order/listOrders/${user?.id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

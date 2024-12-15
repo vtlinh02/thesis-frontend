@@ -5,6 +5,7 @@ import Image from "next/image";
 import { thumbnailShoe3 } from "@assets/images";
 import { increaseImg, decreaseImg } from "@assets/images";
 import { useUser } from "@context/UserContext";
+// import "dotenv/config";
 
 const CartItem = ({ cart, setCarts, balance, setBalance }: any) => {
   const [quantity, setQuantity] = useState(1);
@@ -14,18 +15,21 @@ const CartItem = ({ cart, setCarts, balance, setBalance }: any) => {
   const product = cart.product;
 
   const handleBuyClick = async () => {
-    const buyResponse = await fetch("http://localhost:8000/order/create", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        customerId: user?.id,
-        productId: product.id,
-        quantity: quantity,
-      }),
-    });
+    const buyResponse = await fetch(
+      "http://${process.env.NEXT_PUBLIC_BACKEND_URL}/order/create",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          customerId: user?.id,
+          productId: product.id,
+          quantity: quantity,
+        }),
+      }
+    );
 
     const buyResult = await buyResponse.json();
 
@@ -40,7 +44,7 @@ const CartItem = ({ cart, setCarts, balance, setBalance }: any) => {
 
   const handleDeleteClick = async () => {
     const deleteResponse = await fetch(
-      `http://localhost:8000/cart/cancel-cart`,
+      `http://${process.env.NEXT_PUBLIC_BACKEND_URL}/cart/cancel-cart`,
       {
         method: "PUT",
         headers: {

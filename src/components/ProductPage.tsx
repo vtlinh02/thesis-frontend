@@ -6,8 +6,9 @@ import { Button } from "@components";
 import { useState, useEffect } from "react";
 import { useUser } from "@context/UserContext";
 import { Product } from "@shared/Product";
+// import "dotenv/config";
 
-const ProductPage = ({ product }: { product: Product }) => {
+const ProductPage = ({ product }: { product: any }) => {
   const { user: customer } = useUser();
 
   let token = null;
@@ -17,7 +18,7 @@ const ProductPage = ({ product }: { product: Product }) => {
   useEffect(() => {
     const fetchIsCartExisted = async () => {
       const isCartExistedResponse = await fetch(
-        "http://localhost:8000/cart/check-cart-exist",
+        `http://${process.env.NEXT_PUBLIC_BACKEND_URL}/cart/check-cart-exist`,
         {
           method: "POST",
           headers: {
@@ -43,7 +44,7 @@ const ProductPage = ({ product }: { product: Product }) => {
   }, [customer, product]);
 
   const handleOnClick = async () => {
-    await fetch("http://localhost:8000/cart", {
+    await fetch(`http://${process.env.NEXT_PUBLIC_BACKEND_URL}/cart`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

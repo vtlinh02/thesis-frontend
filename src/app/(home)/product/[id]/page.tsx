@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import { useUser } from "@context/UserContext";
 import { withAuth } from "@utils/withAuth";
+// import "dotenv/config";
 
 const Product = ({ params }: { params: Params }) => {
   const { id: productId } = params;
@@ -16,7 +17,7 @@ const Product = ({ params }: { params: Params }) => {
     const token = localStorage.getItem("token");
     const fetchProduct = async () => {
       const productResponse = await fetch(
-        `http://localhost:8000/product/${productId}`,
+        `http://${process.env.NEXT_PUBLIC_BACKEND_URL}/product/${productId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

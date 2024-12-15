@@ -3,6 +3,7 @@
 import React from "react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+// import "dotenv/config";
 
 const SignUp: React.FC = () => {
   const [formData, setFormData] = useState({ username: "", password: "" });
@@ -13,16 +14,19 @@ const SignUp: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const response = await fetch("http://localhost:8000/auth/sign-up", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username: formData.username,
-        password: formData.password,
-      }),
-    });
+    const response = await fetch(
+      `http://${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/sign-up`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: formData.username,
+          password: formData.password,
+        }),
+      }
+    );
 
     if (response.ok) {
       const result: any = await response.json();

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import ProductItem from "./ProductItem";
 import { useUser } from "@context/UserContext";
+// import "dotenv/config";
 
 const ListProductItems = ({ products }: any) => {
   return (
@@ -24,7 +25,7 @@ const Feed = () => {
     const getProducts = async () => {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "http://localhost:8000/product/listProducts/1",
+        `http://${process.env.NEXT_PUBLIC_BACKEND_URL}/product/listProducts/1`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

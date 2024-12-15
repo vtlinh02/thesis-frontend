@@ -4,6 +4,7 @@ import { useState, useEffect, use } from "react";
 import { CartItem } from "@components";
 import { useUser } from "@context/UserContext";
 import { withAuth } from "@utils/withAuth";
+// import "dotenv/config";
 
 const Cart = () => {
   const [carts, setCarts] = useState([]);
@@ -18,7 +19,7 @@ const Cart = () => {
   useEffect(() => {
     const fetchCartsData = async () => {
       const cartsResponse = await fetch(
-        `http://localhost:8000/cart/list-carts/${user?.id}`,
+        `http://${process.env.NEXT_PUBLIC_BACKEND_URL}/cart/list-carts/${user?.id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -33,7 +34,7 @@ const Cart = () => {
 
     const fetchBalance = async () => {
       const balanceResponse = await fetch(
-        `http://localhost:8000/wallet/${user?.id}`,
+        `http://${process.env.NEXT_PUBLIC_BACKEND_URL}/wallet/${user?.id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

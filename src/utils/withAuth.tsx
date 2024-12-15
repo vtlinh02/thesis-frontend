@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useUser } from "@context/UserContext";
+// import "dotenv/config";
 
 export function withAuth<P extends object>(
   WrappedComponent: React.ComponentType<P>
@@ -21,7 +22,7 @@ export function withAuth<P extends object>(
         }
 
         const response = await fetch(
-          "http://localhost:8000/auth/validate-token",
+          `http://${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/validate-token`,
           {
             headers: {
               "Content-Type": "application/json",
