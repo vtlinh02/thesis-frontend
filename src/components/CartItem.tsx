@@ -16,7 +16,7 @@ const CartItem = ({ cart, setCarts, balance, setBalance }: any) => {
 
   const handleBuyClick = async () => {
     const buyResponse = await fetch(
-      "http://${process.env.NEXT_PUBLIC_BACKEND_URL}/order/create",
+      `http://${process.env.NEXT_PUBLIC_BACKEND_URL}/order/create`,
       {
         method: "POST",
         headers: {
