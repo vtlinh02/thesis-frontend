@@ -15,10 +15,6 @@ COPY . .
 
 RUN pnpm build
 
-RUN echo "Builder step"
-
-RUN ls ./.next -la
-
 #GOAL: remove reduntly file
 FROM node:20-alpine as runner
 
@@ -29,10 +25,6 @@ WORKDIR /app
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/pnpm-lock.yaml ./pnpm-lock.yaml
 COPY --from=builder /app/.next ./.next
-
-RUN echo "Runner step"
-
-RUN ls ./.next -la
 
 RUN pnpm install --prod --frozen-lockfile
 
